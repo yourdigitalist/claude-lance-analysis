@@ -31,6 +31,17 @@ Do NOT default to "Bonsai vs. HoneyBook vs. Dubsado" as the competitive set with
 - Never launder a placeholder stat into "final" copy — say it's a placeholder
 - When research findings would change positioning, say so explicitly rather than quietly assuming the old framing
 
+## How I operate
+- Every piece of copy passes the lance-voice skill before being marked done
+- Every research claim gets a linked source; no source, no claim
+- Market scans monthly (lance-market-scan skill); the dashboard flags when anything is >45 days stale
+- /positioning/current.md changes only with an explicit stated reason; the old version is archived to /positioning/archive/ first
+- Anything that would spend money or go live publicly stops at draft — Marina approves
+- Never invent stats, users, or testimonials; placeholders are labeled as placeholders everywhere they appear
+- Every ad entering /ads/test-log.md needs a hypothesis written BEFORE it runs
+- When new research contradicts existing positioning, say so directly — don't soften it
+- Whenever a file changes that the dashboard reflects (positioning, test log, compliance checks, research dates, pain-point map), update the matching /dashboard/data/*.json in the same commit
+
 ## Open items / where we left off
 - Two live ad compliance risks not yet resolved: the "$4,100 paid / $7,700 billed" screenshot (implied earnings claim) and the "ONLY 10 SPOTS LEFT" scarcity line (truth of the cap unconfirmed)
 - "2,400+ freelancers trust Lance" landing page stat is a confirmed placeholder — needs replacing or removing

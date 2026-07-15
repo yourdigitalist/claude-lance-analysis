@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lance — Marketing Ops Dashboard</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>📋</text></svg>">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --ink: #0b0b0b;
+    --ink-2: #52514e;
+    --ink-muted: #898781;
+    --hairline: #e1e0d9;
+    --good: #0ca30c;
+    --warning: #fab219;
+    --serious: #ec835a;
+    --critical: #d03b3b;
+    --good-bg: #e8f6e8;
+    --warning-bg: #fdf3dc;
+    --serious-bg: #fcebe3;
+    --critical-bg: #f9e4e4;
+    --neutral-bg: #f0efec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --page: #0d0d0d;
+      --surface: #1a1a19;
+      --ink: #ffffff;
+      --ink-2: #c3c2b7;
+      --ink-muted: #898781;
+      --hairline: #2c2c2a;
+      --good-bg: #12300f;
+      --warning-bg: #38290a;
+      --serious-bg: #3a1f12;
+      --critical-bg: #3a1414;
+      --neutral-bg: #242422;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --ink-muted: #898781;
+    --hairline: #2c2c2a;
+    --good-bg: #12300f;
+    --warning-bg: #38290a;
+    --serious-bg: #3a1f12;
+    --critical-bg: #3a1414;
+    --neutral-bg: #242422;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 24px;
+  }
+  header { max-width: 1200px; margin: 0 auto 20px; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+  h1 { font-size: 20px; margin: 0; }
+  #generated { color: var(--ink-muted); font-size: 13px; }
+  main { max-width: 1200px; margin: 0 auto; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+  section {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  section.wide { grid-column: 1 / -1; }
+  h2 { font-size: 15px; margin: 0 0 12px; }
+  h2 .sub { font-weight: normal; color: var(--ink-muted); font-size: 13px; }
+  .hero-angle { font-size: 22px; font-weight: 600; margin: 4px 0 10px; }
+  .kv { color: var(--ink-2); margin: 6px 0; }
+  .kv b { color: var(--ink); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; color: var(--ink-2); }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th { text-align: left; color: var(--ink-muted); font-weight: 500; padding: 6px 10px 6px 0; border-bottom: 1px solid var(--hairline); }
+  td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--hairline); vertical-align: top; color: var(--ink-2); }
+  td:first-child { color: var(--ink); }
+  tr:last-child td { border-bottom: none; }
+  .scroll { overflow-x: auto; }
+  .chip {
+    display: inline-block; padding: 1px 9px; border-radius: 999px;
+    font-size: 12px; font-weight: 600; white-space: nowrap;
+    border: 1px solid transparent;
+  }
+  .chip.green    { background: var(--good-bg);     color: var(--ink); border-color: var(--good); }
+  .chip.red      { background: var(--critical-bg); color: var(--ink); border-color: var(--critical); }
+  .chip.yellow   { background: var(--warning-bg);  color: var(--ink); border-color: var(--warning); }
+  .chip.neutral  { background: var(--neutral-bg);  color: var(--ink-2); border-color: var(--hairline); }
+  .chip.live     { background: var(--neutral-bg);  color: var(--ink); border-color: var(--ink-muted); }
+  .risk { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--hairline); }
+  .risk:last-child { border-bottom: none; }
+  .risk .body { color: var(--ink-2); font-size: 13.5px; }
+  .risk .body b { color: var(--ink); display: block; font-size: 14px; }
+  .fresh { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--hairline); gap: 8px; }
+  .fresh:last-child { border-bottom: none; }
+  .fresh .name { color: var(--ink); }
+  .fresh .date { color: var(--ink-muted); font-size: 13px; }
+  /* matrix */
+  .matrix th { font-size: 12px; }
+  .matrix td.cell { text-align: center; padding: 4px; }
+  .cellmark {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 58px; padding: 2px 6px; border-radius: 6px;
+    font-size: 11px; font-weight: 600; color: var(--ink);
+    border: 1px solid var(--hairline); background: var(--neutral-bg);
+  }
+  .cellmark.solves  { background: var(--good-bg);    border-color: var(--good); }
+  .cellmark.partial { background: var(--warning-bg); border-color: var(--warning); }
+  .cellmark.could   { background: var(--serious-bg); border-color: var(--serious); }
+  .cellmark.no      { color: var(--ink-muted); }
+  .legend { margin-top: 10px; font-size: 12px; color: var(--ink-muted); display: flex; gap: 12px; flex-wrap: wrap; }
+  .err { color: var(--critical); font-size: 13.5px; }
+  footer { max-width: 1200px; margin: 18px auto 0; color: var(--ink-muted); font-size: 12.5px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Lance — Marketing Ops Dashboard</h1>
+  <span id="generated"></span>
+</header>
+<main>
+  <section id="positioning">
+    <h2>Positioning now</h2>
+    <div class="err">Loading…</div>
+  </section>
+  <section id="freshness">
+    <h2>Research freshness <span class="sub">(flag at &gt;45 days)</span></h2>
+    <div class="err">Loading…</div>
+  </section>
+  <section id="risks" class="wide">
+    <h2>Open risks</h2>
+    <div class="err">Loading…</div>
+  </section>
+  <section id="testlog" class="wide">
+    <h2>Ad test log</h2>
+    <div class="err">Loading…</div>
+  </section>
+  <section id="matrix" class="wide">
+    <h2>Pain points vs features</h2>
+    <div class="err">Loading…</div>
+  </section>
+</main>
+<footer>
+  Data lives in dashboard/data/*.json and is updated alongside the underlying repo files. A green rating is a risk assessment, not an approval — Marina signs off on anything that goes live.
+</footer>
+<script>
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const chip = (cls, label) => `<span class="chip ${cls}">${esc(label)}</span>`;
+const complianceChip = c => chip({green:'green', red:'red', yellow:'yellow'}[c] || 'neutral', c.toUpperCase());
+const statusChip = s => chip(s === 'live' ? 'live' : 'neutral', s);
+
+const daysSince = iso => Math.floor((Date.now() - new Date(iso + 'T00:00:00Z')) / 86400000);
+
+async function load(name) {
+  const r = await fetch(`data/${name}.json`);
+  if (!r.ok) throw new Error(`${name}.json: HTTP ${r.status}`);
+  return r.json();
+}
+
+function fail(id, e) {
+  document.querySelector(`#${id} .err`).textContent =
+    `Could not load data (${e.message}). If opened as a local file, serve the folder instead: python3 -m http.server -d dashboard`;
+}
+
+load('positioning').then(d => {
+  document.getElementById('positioning').innerHTML = `
+    <h2>Positioning now <span class="sub">last changed ${esc(d.last_changed)}</span></h2>
+    <div class="hero-angle">&ldquo;${esc(d.hero_angle)}&rdquo;</div>
+    <div class="kv"><b>Differentiator:</b> ${esc(d.differentiator)}</div>
+    <div class="kv"><b>Pillars:</b></div>
+    <ul>${d.pillars.map(p => `<li>${esc(p)}</li>`).join('')}</ul>
+    <div class="kv"><b>Proof points:</b> ${esc(d.proof_points)}</div>
+    <div class="kv"><b>Why last changed:</b> ${esc(d.change_reason)}</div>`;
+}).catch(e => fail('positioning', e));
+
+load('research').then(d => {
+  const rows = d.items.map(it => {
+    let status;
+    if (!it.last_run) {
+      status = chip('red', 'never run');
+    } else {
+      const days = daysSince(it.last_run);
+      status = days > d.stale_after_days
+        ? chip('red', `stale: ${days}d`)
+        : chip('green', `${days}d ago`);
+    }
+    const note = it.note ? `<div class="date">${esc(it.note)}</div>` : '';
+    return `<div class="fresh"><div><div class="name">${esc(it.name)}</div>${note}</div>
+            <div><span class="date">${esc(it.last_run ?? '—')}</span> ${status}</div></div>`;
+  }).join('');
+  document.querySelector('#freshness .err').outerHTML = rows;
+}).catch(e => fail('freshness', e));
+
+load('risks').then(d => {
+  const lvl = { red: 'red', yellow: 'yellow' };
+  const rows = d.risks.map(r => `
+    <div class="risk">
+      <div>${chip(lvl[r.level] || 'neutral', r.level.toUpperCase())}</div>
+      <div class="body"><b>${esc(r.item)}</b>${esc(r.why)}<br><i>Next: ${esc(r.action)}</i></div>
+    </div>`).join('');
+  document.querySelector('#risks .err').outerHTML = rows + `<div class="legend">Updated ${esc(d.updated)}</div>`;
+}).catch(e => fail('risks', e));
+
+load('test-log').then(d => {
+  const rows = d.tests.map(t => `
+    <tr><td>${esc(t.name)}</td><td>${esc(t.hypothesis)}</td>
+    <td>${statusChip(t.status)}</td><td>${complianceChip(t.compliance)}</td>
+    <td>${esc(t.result)}</td></tr>`).join('');
+  document.querySelector('#testlog .err').outerHTML = `
+    <div class="scroll"><table>
+      <thead><tr><th>Test</th><th>Hypothesis</th><th>Status</th><th>Compliance</th><th>Result</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div><div class="legend">Updated ${esc(d.updated)} · full log: ads/test-log.md</div>`;
+}).catch(e => fail('testlog', e));
+
+load('matrix').then(d => {
+  const short = { solves: 'Solves', partial: 'Partial', could: 'Could', no: '—' };
+  const head = `<tr><th>Feature</th>${d.pains.map(p => `<th>${esc(p)}</th>`).join('')}</tr>`;
+  const rows = d.features.map(f => `
+    <tr><td>${esc(f.name)}</td>${f.cells.map(c =>
+      `<td class="cell"><span class="cellmark ${esc(c)}" title="${esc(d.legend[c] ?? c)}">${esc(short[c] ?? c)}</span></td>`
+    ).join('')}</tr>`).join('');
+  const legend = Object.entries(d.legend).map(([k, v]) =>
+    `<span><span class="cellmark ${esc(k)}">${esc(short[k] ?? k)}</span> ${esc(v)}</span>`).join('');
+  document.querySelector('#matrix .err').outerHTML = `
+    <div class="scroll"><table class="matrix"><thead>${head}</thead><tbody>${rows}</tbody></table></div>
+    <div class="legend">${legend}</div>
+    <div class="legend">${esc(d.note)} · Updated ${esc(d.updated)}</div>`;
+}).catch(e => fail('matrix', e));
+
+document.getElementById('generated').textContent = 'viewed ' + new Date().toISOString().slice(0, 10);
+</script>
+</body>
+</html>

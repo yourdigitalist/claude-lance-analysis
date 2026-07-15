@@ -1,0 +1,174 @@
+{
+  "updated": "2026-07-15",
+  "legend": {
+    "solves": "Solves today",
+    "partial": "Solves partially",
+    "could": "Could solve",
+    "no": "Doesn't address"
+  },
+  "pains": [
+    "Scattered feedback",
+    "Version confusion",
+    "Delayed approvals",
+    "Unpaid invoices",
+    "Scope creep",
+    "Tool sprawl",
+    "Vague feedback",
+    "Complex setup",
+    "Contracts",
+    "Time-to-invoice"
+  ],
+  "features": [
+    {
+      "name": "File approvals",
+      "cells": [
+        "solves",
+        "solves",
+        "solves",
+        "no",
+        "partial",
+        "partial",
+        "partial",
+        "no",
+        "no",
+        "no"
+      ]
+    },
+    {
+      "name": "Proposals",
+      "cells": [
+        "no",
+        "no",
+        "no",
+        "no",
+        "solves",
+        "partial",
+        "no",
+        "no",
+        "partial",
+        "no"
+      ]
+    },
+    {
+      "name": "Contracts + e-sign",
+      "cells": [
+        "no",
+        "no",
+        "no",
+        "no",
+        "solves",
+        "partial",
+        "no",
+        "no",
+        "solves",
+        "no"
+      ]
+    },
+    {
+      "name": "Invoicing + reminders",
+      "cells": [
+        "no",
+        "no",
+        "no",
+        "solves",
+        "no",
+        "solves",
+        "no",
+        "no",
+        "no",
+        "solves"
+      ]
+    },
+    {
+      "name": "Time tracking",
+      "cells": [
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "solves",
+        "no",
+        "no",
+        "no",
+        "solves"
+      ]
+    },
+    {
+      "name": "Services library",
+      "cells": [
+        "no",
+        "no",
+        "no",
+        "no",
+        "partial",
+        "partial",
+        "no",
+        "no",
+        "no",
+        "no"
+      ]
+    },
+    {
+      "name": "CRM / Kanban",
+      "cells": [
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "partial",
+        "no",
+        "no",
+        "no",
+        "no"
+      ]
+    },
+    {
+      "name": "Projects + tasks",
+      "cells": [
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "partial",
+        "no",
+        "no",
+        "no",
+        "no"
+      ]
+    },
+    {
+      "name": "Dashboard analytics",
+      "cells": [
+        "no",
+        "no",
+        "no",
+        "partial",
+        "no",
+        "partial",
+        "no",
+        "no",
+        "no",
+        "no"
+      ]
+    },
+    {
+      "name": "Notes to tasks",
+      "cells": [
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no"
+      ]
+    }
+  ],
+  "note": "v2.1 (2026-07-15): contracts + e-signatures confirmed by Marina (absent from stale product docs; v2 wrongly listed as a gap). Proposals, Services, analytics added in v2 after being missed in v1."
+}

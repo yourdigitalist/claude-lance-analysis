@@ -1,0 +1,53 @@
+{
+  "updated": "2026-07-15",
+  "risks": [
+    {
+      "level": "red",
+      "item": "Live ad: $4,100 paid / $7,700 billed screenshot",
+      "why": "Specific dollar figures in creative read as implied earnings claims on Meta, even in UI mockups",
+      "action": "Remove figures or replace creative. Marina's call."
+    },
+    {
+      "level": "red",
+      "item": "Live ad: ONLY 10 SPOTS LEFT",
+      "why": "Scarcity claim; known Meta rejection trigger; truth of the cap unconfirmed",
+      "action": "Confirm cap is real and enforced, or pull the line. Marina's call."
+    },
+    {
+      "level": "red",
+      "item": "Landing page: 'Simple, honest pricing.' heading",
+      "why": "Verbatim banned phrase in the CLAUDE.md voice rules, live on the page (2026-07-15 audit)",
+      "action": "Replace heading. Suggestions in the LP audit. Marina picks."
+    },
+    {
+      "level": "yellow",
+      "item": "Product docs stale: contracts + e-signatures undocumented",
+      "why": "Feature confirmed real by Marina 2026-07-15 but absent from tech/journey docs; caused a false gap finding in v2 analysis",
+      "action": "Update the product docs and replace the extracts in /product/reference/"
+    },
+    {
+      "level": "yellow",
+      "item": "Landing page: '$75/month average' claim",
+      "why": "Specific stat with no visible source; defensible only if it's the sum of the listed table prices, phrased as such",
+      "action": "Verify the arithmetic against current prices (market scan has sources) and reword to 'adds up to', or drop."
+    },
+    {
+      "level": "yellow",
+      "item": "Landing page: beta tester testimonials",
+      "why": "Real-proof-only rule: must be real people who agreed to be quoted",
+      "action": "Marina confirms each quote's source and permission."
+    },
+    {
+      "level": "yellow",
+      "item": "'2,400+ freelancers' placeholder: likely removed, confirm",
+      "why": "Not visible in the 2026-07-15 screenshot, but small hero text was unreadable",
+      "action": "Confirm removed everywhere (including small print), then close the CLAUDE.md open item."
+    },
+    {
+      "level": "yellow",
+      "item": "No ad performance data yet",
+      "why": "Campaign too new; research is standing in for conversion data",
+      "action": "Revisit test log once Meta reports meaningful numbers"
+    }
+  ]
+}
