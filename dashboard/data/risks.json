@@ -20,10 +20,10 @@
       "action": "Replace heading. Suggestions in the LP audit. Marina picks."
     },
     {
-      "level": "red",
-      "item": "Landing page: 'Signed contracts' section vs product docs",
-      "why": "No contracts/e-signature feature in the tech or journey docs; page may be claiming a feature that doesn't exist",
-      "action": "Marina confirms: feature shipped (update docs) or reword/remove section."
+      "level": "yellow",
+      "item": "Product docs stale: contracts + e-signatures undocumented",
+      "why": "Feature confirmed real by Marina 2026-07-15 but absent from tech/journey docs; caused a false gap finding in v2 analysis",
+      "action": "Update the product docs and replace the extracts in /product/reference/"
     },
     {
       "level": "yellow",

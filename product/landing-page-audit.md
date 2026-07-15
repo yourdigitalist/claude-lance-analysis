@@ -4,15 +4,17 @@
 
 **Resolution caveat:** body copy is too small to read in the screenshot, so line-level voice checks (em dashes, sentence rhythm) could not be run. The section headings and major claims ARE legible and are audited below. To finish the line-level pass: export the copy from the landing page CMS (/admin/landing-content per the tech doc) into /product/lp-snapshots/ and run lance-voice on it.
 
-## Overall rating: RED (one hard voice violation + one unverified feature claim)
+## Overall rating: RED (one hard voice violation)
+
+**Update 2026-07-15 (later same day):** Marina confirmed contracts WITH e-signatures exist in the product — the tech/journey docs are stale, not the page. That finding is resolved below; the remaining hard violation is the pricing heading.
 
 ## Findings
 
 ### RED — "Simple, honest pricing." section heading
 This is verbatim on the banned list in CLAUDE.md (voice rules: no generic SaaS clichés, with "simple, honest pricing" named explicitly). It must change. On-voice alternatives to consider: "One plan. $29." / "What it costs." / "No tiers, no add-ons." (all pass lance-voice; Marina picks).
 
-### RED until verified — "Signed contracts without the back-and-forth." section
-Neither the technical build doc nor the user journey doc documents a contracts/e-signature feature. Proposals exist (with an Accept action), but a proposal acceptance is not a signed contract. Either (a) contracts shipped and the docs are stale — then fine, update the docs; or (b) the page is marketing a feature that doesn't exist — that's a trust and refund risk and the section should be reworded to what proposals actually do ("Proposals your clients can accept in one click") or removed. **Marina to confirm which.**
+### RESOLVED — "Signed contracts without the back-and-forth." section
+Flagged 2026-07-15 because neither the technical build doc nor the user journey doc documents a contracts/e-signature feature. **Marina confirmed same day: contracts with e-signatures exist in the product — the docs are stale.** Page claim is legitimate. Follow-up: update the product docs (and the extracts in /product/reference/) so future audits don't re-flag this.
 
 ### YELLOW — "The average freelancer pays $75/month to run their business."
 Specific stat, no visible source. If $75 is the sum of the actual tool prices listed in the comparison table next to it, it's defensible arithmetic — but then (a) verify those listed prices are current (our 2026-07-14 market scan has sourced prices to check against) and (b) say "adds up to" rather than "the average freelancer pays", which claims survey data we don't have. If it's not the table sum, it's an invented stat and has to go.
@@ -38,7 +40,7 @@ The placeholder stat is not visible anywhere in the screenshot. If it was remove
 ## Action list (for Marina)
 
 1. Replace "Simple, honest pricing." heading — hard rule violation
-2. Confirm contracts feature exists or reword/remove that section
+2. ~~Confirm contracts feature exists~~ Done: confirmed real (e-signatures included). Update the stale product docs
 3. Source or reframe the $75/month claim
 4. Confirm beta testimonials are real and permitted
 5. Confirm "2,400+" placeholder is fully removed (including small print)
