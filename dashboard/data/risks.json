@@ -1,0 +1,35 @@
+{
+  "updated": "2026-07-14",
+  "risks": [
+    {
+      "level": "red",
+      "item": "Live ad: $4,100 paid / $7,700 billed screenshot",
+      "why": "Specific dollar figures in creative read as implied earnings claims on Meta, even in UI mockups",
+      "action": "Remove figures or replace creative. Marina's call."
+    },
+    {
+      "level": "red",
+      "item": "Live ad: ONLY 10 SPOTS LEFT",
+      "why": "Scarcity claim; known Meta rejection trigger; truth of the cap unconfirmed",
+      "action": "Confirm cap is real and enforced, or pull the line. Marina's call."
+    },
+    {
+      "level": "yellow",
+      "item": "Landing page: 2,400+ freelancers trust Lance",
+      "why": "Confirmed placeholder stat; violates real-proof-only rule if still live",
+      "action": "Replace with a real number or remove. Could not verify still live (page unreachable this session)."
+    },
+    {
+      "level": "yellow",
+      "item": "Landing page audit incomplete",
+      "why": "getlance.app unreachable from the research environment (403 / network policy)",
+      "action": "Re-run audit from a session with page access; checklist ready in /product/landing-page-audit.md"
+    },
+    {
+      "level": "yellow",
+      "item": "No ad performance data yet",
+      "why": "Campaign too new; research is standing in for conversion data",
+      "action": "Revisit test log once Meta reports meaningful numbers"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "updated": "2026-07-14",
+  "legend": { "solves": "Solves today", "partial": "Solves partially", "could": "Could solve", "no": "Doesn't address" },
+  "pains": [
+    "Scattered feedback",
+    "Version confusion",
+    "Delayed approvals",
+    "Unpaid invoices",
+    "Scope creep",
+    "Tool sprawl",
+    "Vague feedback",
+    "Complex setup",
+    "No contracts",
+    "Time-to-invoice"
+  ],
+  "features": [
+    { "name": "File approvals", "cells": ["solves", "solves", "solves", "no", "could", "partial", "partial", "no", "no", "no"] },
+    { "name": "Invoicing", "cells": ["no", "no", "no", "partial", "no", "solves", "no", "no", "no", "solves"] },
+    { "name": "Time tracking", "cells": ["no", "no", "no", "no", "no", "solves", "no", "no", "no", "solves"] },
+    { "name": "CRM / Kanban", "cells": ["no", "no", "no", "no", "no", "partial", "no", "no", "no", "no"] },
+    { "name": "Projects", "cells": ["no", "no", "no", "no", "no", "partial", "no", "no", "no", "no"] },
+    { "name": "Notes to tasks", "cells": ["no", "no", "no", "no", "no", "no", "no", "no", "no", "no"] }
+  ],
+  "note": "From product/feature-evaluation.md. 'Complex setup' and 'No contracts' are competitor-relative: setup speed unverified, contracts is a real gap."
+}

@@ -1,0 +1,33 @@
+{
+  "updated": "2026-07-14",
+  "tests": [
+    {
+      "name": "Earnings screenshot ($4,100 / $7,700)",
+      "hypothesis": "None recorded (predates log)",
+      "status": "live",
+      "compliance": "red",
+      "result": "No data yet. Open risk: dollar figures read as implied earnings claim. Needs Marina."
+    },
+    {
+      "name": "Scarcity line (ONLY 10 SPOTS LEFT)",
+      "hypothesis": "None recorded (predates log)",
+      "status": "live",
+      "compliance": "red",
+      "result": "No data yet. Open question: is the cap real and enforced? If not, pull it."
+    },
+    {
+      "name": "Arm A: general angle (Organised freelancers earn more)",
+      "hypothesis": "Broad organisation-equals-earnings angle converts at least as well as feature-specific copy",
+      "status": "live",
+      "compliance": "green",
+      "result": "Campaign too new, no data yet"
+    },
+    {
+      "name": "Arm B: approvals angle (no-login client review)",
+      "hypothesis": "To finalize before launch: naming the concrete approvals pain beats the general angle",
+      "status": "draft",
+      "compliance": "pending",
+      "result": "Copy doesn't exist yet"
+    }
+  ]
+}
