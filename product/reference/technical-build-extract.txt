@@ -1,0 +1,216 @@
+Lance - Technical Architecture Documentation
+Overview
+Lance is a business management SaaS application for freelancers and small teams, providing client/project management, time tracking, invoicing, client review requests, and subscription billing with a comprehensive admin system.
+Tech Stack
+Frontend
+React 18 + TypeScript (non-strict mode)
+Vite 7 (SWC) for bundling
+React Router v6 (client-side routing, SPA)
+TanStack React Query v5 (selective use for branding/icons/landing)
+Tailwind CSS 3 + shadcn/ui components (Radix UI primitives)
+React Hook Form + Zod validation
+Framer Motion for animations
+@dnd-kit for Kanban boards
+Recharts for data visualization
+Backend & Infrastructure
+Supabase: PostgreSQL database, Auth, Storage, Edge Functions (Deno)
+Stripe: Subscription billing, checkout, customer portal
+Resend: Transactional email
+Crisp: Customer chat widget
+Deployment
+Vercel (static SPA hosting with rewrites)
+Dev server: localhost:5173
+Architecture Patterns
+Authentication & Authorization
+Supabase Auth with email/password + magic links
+Session storage in localStorage
+Three-tier access control:
+ProtectedRoute - requires authentication
+OnboardingRoute - gates incomplete onboarding
+Subscription gate - redirects to /settings/subscription if no active plan/trial
+Admin gate - profiles.is_admin flag checked in AdminLayout
+State Management
+Local React state for most UI
+Supabase client for data fetching (mostly useEffect patterns)
+React Query for: branding, landing content, icon customizations
+TimerContext with localStorage persistence for time tracking
+IconSlotContext for customizable icon system
+AuthProvider wraps entire app
+Data Flow
+User authenticates → Supabase session
+ProtectedRoute checks profile (onboarding + subscription status)
+Pages fetch data via supabase.from().select()
+Mutations write directly to Supabase
+Edge Functions handle sensitive operations (Stripe, emails)
+React Query invalidates cached branding/content
+Core Features
+User-Facing
+CRM: Clients, projects, tasks with Kanban/list views
+Time Tracking: Timer with draft segments, time logs, entry management
+Invoicing: Create, preview, send invoices with taxes
+Client Reviews: Public token-based review requests with file uploads
+Notes: Rich text editor with folders
+Notifications: In-app notification system
+Search: Global search across entities
+Settings: Profile, business info, invoice defaults, locale, notifications, subscription, storage management
+Admin Features
+System health checks (billing, trial reminders)
+Announcements (broadcast emails)
+Communications template management
+Branding customization (colors, logos)
+Icon customization system (slots for different UI areas)
+Help content management
+Feature requests & voting system
+User feedback collection
+Landing page content editor
+Database Schema (44 migrations)
+Key Tables
+Identity: profiles (user settings, subscription status, admin flag)
+CRM: clients, projects, project_statuses, tasks, task_comments
+Time: time_entries, time_entry_segments
+Billing: invoices, invoice_items, taxes
+Reviews: review_requests, review_recipients, review_comments, review_files, review_folders
+Content: notes, note_folders, help_content
+Customization: app_branding, app_icon_slots, app_icon_uploads, landing_content
+Communication: app_comms_defaults, notifications
+Feedback: feedback, feature_requests, feature_request_votes
+Security: rate_limits
+Security
+Row Level Security (RLS) enabled
+User data isolated by user_id
+Storage buckets: review-files (private), app-branding, note-images, app-icons, landing-images
+Edge Functions (Supabase/Deno)
+Billing
+create-checkout-session - Stripe checkout
+create-portal-session - Customer portal access
+stripe-webhook - Webhook handler for subscription updates
+complete-onboarding-after-checkout - Post-purchase flow
+billing-health - Admin health checks
+Communications
+send-invoice - Email invoices with PDF (Resend)
+send-review-request - Review request emails
+send-announcement - Broadcast announcements
+send-trial-reminders - Automated trial reminders
+send-deadline-notifications - Task deadline alerts
+send-feedback-notification - Feedback notifications
+help-contact-submit - Help form submissions
+Reviews
+get-review - Fetch review by token
+update-review-status - Change review state
+submit-review-comment / update-review-comment / delete-review-comment - Comment CRUD
+upload-review-file - File upload handler
+Other
+sync-users-to-resend - Marketing contact sync
+generate-client-summary - AI/aggregation (name suggests)
+Security Note: verify_jwt = false in config.toml - JWT validation done inside functions
+Routing Structure
+Public Routes
+/ - Landing page (or redirect to dashboard if logged in)
+/auth - Sign in/up
+/terms, /privacy - Legal pages
+/reset-password - Password recovery
+/review/:token - Public client review (no login required)
+Protected Routes
+/dashboard - Main dashboard
+/clients, /clients/list, /clients/active - Client management
+/projects, /projects/:id - Project views
+/time, /time/timer, /time/logs - Time tracking
+/invoices, /invoices/:id - Invoice management
+/reviews, /reviews/:id - Review management
+/notes - Notes workspace
+/notifications - Notification center
+/search - Global search
+/feature-requests - Feature request portal (replaces old /help)
+Settings
+/settings/profile - User profile
+/settings/business - Business info
+/settings/invoices - Invoice defaults
+/settings/locale - Language/currency
+/settings/notifications - Notification preferences
+/settings/subscription - Billing & subscription
+/settings/storage - Storage usage (10MB cap visible in UI)
+Admin (requires is_admin)
+/admin - Overview
+/admin/system-check - Health monitoring
+/admin/announcements - Broadcast management
+/admin/comms - Template editor
+/admin/branding - Brand customization
+/admin/icons - Icon slot management
+/admin/help-content - Help article editor
+/admin/feature-requests - Feature request moderation
+/admin/feedback - User feedback review
+/admin/landing-content - Landing page CMS
+UI/Design System
+Styling
+Purple-themed design system (custom CSS variables)
+Open Runde font (sans-serif family)
+Dark mode support (CSS class-driven)
+HSL color variables for theming
+Responsive with Tailwind breakpoints
+Component Library
+40+ shadcn-style UI components in src/components/ui/
+Custom layout: AppLayout with collapsible sidebar, trial banner, timer bar
+Task views: Kanban board (drag-drop), list view
+Rich text editor (Quill-based)
+Chart components (Recharts wrappers)
+Marketing components: Marquee, landing sections
+Environment Configuration
+Frontend (VITE_*)
+VITE_SITE_URL - Production URL for emails/links
+VITE_SUPABASE_URL - Supabase project URL
+VITE_SUPABASE_ANON_KEY - Public anon key
+VITE_STRIPE_PRICE_MONTHLY - Monthly plan ID
+VITE_STRIPE_PRICE_ANNUAL - Annual plan ID
+VITE_CRISP_WEBSITE_ID - Chat widget ID
+Backend (Edge Functions only)
+STRIPE_SECRET_KEY - Stripe API key
+STRIPE_WEBHOOK_SECRET - Webhook signing
+RESEND_API_KEY - Email API
+Key Files Reference
+File
+Purpose
+src/App.tsx
+Route definitions, auth gates
+src/lib/auth.tsx
+Auth provider & hooks
+src/contexts/TimerContext.tsx
+Time tracking state
+src/contexts/IconSlotContext.tsx
+Icon customization
+src/integrations/supabase/types.ts
+Generated DB types
+src/integrations/supabase/client.ts
+Supabase client config
+supabase/migrations/
+44 schema migrations
+vite.config.ts
+Build config, path aliases
+tailwind.config.ts
+Design tokens
+vercel.json
+SPA deployment config
+Development Notes
+TypeScript strict mode: Disabled (strict: false)
+Testing: Vitest + Testing Library configured
+Port: 5173 (Vite default)
+Path alias: @/* → src/*
+Storage limits: 10MB per user (UI enforced in StorageSettings)
+Timer persistence: Draft state in localStorage (lance_timer_draft)
+Recent Feature Additions (Services, Proposals, Proposal Settings)
+Services Module
+Protected routes: /services
+Database: public.services with price, currency, recurrence, default_tasks JSONB, and owner-based RLS.
+UI: Services list + ServiceFormModal (RHF + Zod), create/edit/delete, recurring period support.
+Integration-ready model for future links to proposals/contracts/invoices via service snapshots.
+Proposals Module
+Protected routes: /proposals, /proposals/:id
+Public route: /proposal/:token (token-based client view)
+Database: public.proposals + public.proposal_services with owner RLS, identifier sequence trigger, public_token, status lifecycle (draft/sent/read/accepted/archived).
+Edge Functions: view-proposal, accept-proposal, send-proposal (email delivery and status transitions).
+Storage: proposal-images bucket for cover uploads with signed URL rendering.
+Editor architecture: autosave on tab change, dynamic service line items, live public-preview iframe, send workflow, error-surfaced save states.
+Proposal Settings (Defaults)
+Route: /settings/proposals (inside SettingsLayout)
+Icon slot: reuses sidebar_proposals for consistent admin-customizable icon mapping.
+Profiles defaults added: default cover image, validity days, immediate availability, payment structure, payment methods, installment description, and conditions notes.
+Create Proposal modal preloads these defaults into newly created proposal records.

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-14",
+  "updated": "2026-07-15",
   "legend": { "solves": "Solves today", "partial": "Solves partially", "could": "Could solve", "no": "Doesn't address" },
   "pains": [
     "Scattered feedback",
@@ -14,12 +14,15 @@
     "Time-to-invoice"
   ],
   "features": [
-    { "name": "File approvals", "cells": ["solves", "solves", "solves", "no", "could", "partial", "partial", "no", "no", "no"] },
-    { "name": "Invoicing", "cells": ["no", "no", "no", "partial", "no", "solves", "no", "no", "no", "solves"] },
+    { "name": "File approvals", "cells": ["solves", "solves", "solves", "no", "partial", "partial", "partial", "no", "no", "no"] },
+    { "name": "Proposals", "cells": ["no", "no", "no", "no", "solves", "partial", "no", "no", "partial", "no"] },
+    { "name": "Invoicing + reminders", "cells": ["no", "no", "no", "solves", "no", "solves", "no", "no", "no", "solves"] },
     { "name": "Time tracking", "cells": ["no", "no", "no", "no", "no", "solves", "no", "no", "no", "solves"] },
+    { "name": "Services library", "cells": ["no", "no", "no", "no", "partial", "partial", "no", "no", "no", "no"] },
     { "name": "CRM / Kanban", "cells": ["no", "no", "no", "no", "no", "partial", "no", "no", "no", "no"] },
-    { "name": "Projects", "cells": ["no", "no", "no", "no", "no", "partial", "no", "no", "no", "no"] },
+    { "name": "Projects + tasks", "cells": ["no", "no", "no", "no", "no", "partial", "no", "no", "no", "no"] },
+    { "name": "Dashboard analytics", "cells": ["no", "no", "no", "partial", "no", "partial", "no", "no", "no", "no"] },
     { "name": "Notes to tasks", "cells": ["no", "no", "no", "no", "no", "no", "no", "no", "no", "no"] }
   ],
-  "note": "From product/feature-evaluation.md. 'Complex setup' and 'No contracts' are competitor-relative: setup speed unverified, contracts is a real gap."
+  "note": "v2 (2026-07-15): corrected against product docs Marina provided. Proposals, Services, dashboard analytics were missed in v1; invoice reminders and time-to-invoice import verified. 'No contracts' remains a real gap (proposal Accept is not an e-signature)."
 }

@@ -2,8 +2,8 @@
   "stale_after_days": 45,
   "items": [
     { "name": "Market scan", "last_run": "2026-07-14", "file": "research/2026-07-14-market-scan.md" },
-    { "name": "Pain-point map", "last_run": "2026-07-14", "file": "product/pain-point-map.md" },
-    { "name": "Feature evaluation", "last_run": "2026-07-14", "file": "product/feature-evaluation.md" },
-    { "name": "Landing page audit", "last_run": null, "file": "product/landing-page-audit.md", "note": "Blocked 2026-07-14: page unreachable. Never completed." }
+    { "name": "Pain-point map", "last_run": "2026-07-15", "file": "product/pain-point-map.md", "note": "v2: corrected against product docs" },
+    { "name": "Feature evaluation", "last_run": "2026-07-15", "file": "product/feature-evaluation.md", "note": "v2: added Proposals, Services, analytics" },
+    { "name": "Landing page audit", "last_run": "2026-07-15", "file": "product/landing-page-audit.md", "note": "Completed from Marina's screenshot. Line-level voice pass still needs CMS copy export." }
   ]
 }

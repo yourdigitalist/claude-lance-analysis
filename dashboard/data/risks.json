@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-14",
+  "updated": "2026-07-15",
   "risks": [
     {
       "level": "red",
@@ -14,16 +14,34 @@
       "action": "Confirm cap is real and enforced, or pull the line. Marina's call."
     },
     {
-      "level": "yellow",
-      "item": "Landing page: 2,400+ freelancers trust Lance",
-      "why": "Confirmed placeholder stat; violates real-proof-only rule if still live",
-      "action": "Replace with a real number or remove. Could not verify still live (page unreachable this session)."
+      "level": "red",
+      "item": "Landing page: 'Simple, honest pricing.' heading",
+      "why": "Verbatim banned phrase in the CLAUDE.md voice rules, live on the page (2026-07-15 audit)",
+      "action": "Replace heading. Suggestions in the LP audit. Marina picks."
+    },
+    {
+      "level": "red",
+      "item": "Landing page: 'Signed contracts' section vs product docs",
+      "why": "No contracts/e-signature feature in the tech or journey docs; page may be claiming a feature that doesn't exist",
+      "action": "Marina confirms: feature shipped (update docs) or reword/remove section."
     },
     {
       "level": "yellow",
-      "item": "Landing page audit incomplete",
-      "why": "getlance.app unreachable from the research environment (403 / network policy)",
-      "action": "Re-run audit from a session with page access; checklist ready in /product/landing-page-audit.md"
+      "item": "Landing page: '$75/month average' claim",
+      "why": "Specific stat with no visible source; defensible only if it's the sum of the listed table prices, phrased as such",
+      "action": "Verify the arithmetic against current prices (market scan has sources) and reword to 'adds up to', or drop."
+    },
+    {
+      "level": "yellow",
+      "item": "Landing page: beta tester testimonials",
+      "why": "Real-proof-only rule: must be real people who agreed to be quoted",
+      "action": "Marina confirms each quote's source and permission."
+    },
+    {
+      "level": "yellow",
+      "item": "'2,400+ freelancers' placeholder: likely removed, confirm",
+      "why": "Not visible in the 2026-07-15 screenshot, but small hero text was unreadable",
+      "action": "Confirm removed everywhere (including small print), then close the CLAUDE.md open item."
     },
     {
       "level": "yellow",

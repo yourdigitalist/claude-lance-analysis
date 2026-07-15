@@ -1,0 +1,829 @@
+Lance - Complete User Guide
+Getting Started
+Sign Up & Create Your Account
+Sign In Page (/auth)
+Sign In Tab: Enter your email and password
+Sign Up Tab:
+First Name, Last Name, Email (required)
+Password (minimum 6 characters)
+Must accept Privacy Policy and Terms & Conditions
+Click Create Account
+Check your email for confirmation link
+Can resend confirmation if needed
+Alternative Sign-In Options
+Magic Link: Enter email → receive login link (check spam)
+Forgot Password: Request reset link via email → redirects to /reset-password
+Onboarding (4-Step Process)
+After confirming your email, you'll complete onboarding:
+Step 1: What do you do? Choose your role:
+Freelancer, Consultant, Designer, Developer/Engineer, Agency, Coach/Trainer, Photographer/Videographer, or Other
+Step 2: What do you want to use first? Select your primary need:
+Dashboard, Clients, Projects, Time Tracking, Notes, Invoices, Client Approvals, or Notifications
+Step 3: Your Business (Optional)
+Business Name (required to continue)
+Currency (searchable dropdown with ~80 currencies)
+Step 4: Choose Your Plan
+15-day free trial (no charge today)
+Monthly: $29/month
+Annual: $290/year (saves 2 months vs monthly)
+Click Continue to Payment → Stripe checkout
+After payment, automatically redirected to Dashboard
+What You Get:
+Unlimited clients & projects
+Time tracking
+Invoicing
+Client approvals
+Notes & notifications
+Dashboard analytics
+Subscription & Trial
+Trial Access:
+15 days from checkout
+Full feature access
+Auto-charges at trial end unless canceled
+After Trial Expires:
+Without active subscription, you're redirected to /settings/subscription
+Can only access subscription settings page
+Must activate subscription to access other features
+Core Features
+1. Dashboard (/dashboard)
+Your command center with:
+Overview Stats:
+Active Clients - Total client count
+Active Projects - Projects with "active" status
+Hours This Month - Total hours logged + unbilled hours breakdown
+Pending Payment - Sum of sent invoices + count
+Active Projects Section:
+Shows up to 4 recent active projects
+Each displays: emoji/color, name, client, status, due date, logged hours, task count
+Click any project to view details
+View All button → full project list
+Quick Actions:
+Create Project, Send Invoice, Log Time, New Note, New Client (direct links)
+Three-Column Overview:
+Notifications (Latest 5):
+Title, link, unread indicator
+View All → /notifications
+Follow-Ups:
+Clients with next action or follow-up date
+View All → /clients
+Recent Activity:
+Last 5 time entries
+Format: "Xh logged on [project name]"
+Bottom Row:
+Approvals: Total, pending, approved review request counts
+Recent Invoices: Total count, status badges, links to latest 2
+2. Clients (/clients)
+Complete CRM for managing your client relationships.
+Adding a Client:
+Required Fields:
+First Name
+Last Name
+Email
+Optional Fields:
+Company
+Phone
+Tax Identification Number
+Full Address (Street, Street 2, City, State/Province, ZIP, Country)
+Status (CRM stages):
+New Lead, Contacted, Qualified, Proposal Sent, Negotiation, Won, Onboarding, Active, Paused, Inactive, Closed Lost
+Next Follow-Up Date
+Lead Source
+Next Action
+Estimated Value
+Currency (default: USD)
+Tags (comma-separated)
+Avatar Color (preset swatches)
+Notes (text area)
+Three View Modes:
+1. Board View (/clients):
+Kanban-style columns for each status
+Drag cards between columns to update status
+Click + on any column to add client with that status
+Card menu: Edit, Delete (with confirmation)
+2. Grid View (/clients/list):
+Card layout showing all clients
+Click card to open detail sheet
+3. List View (/clients/active):
+Filtered to "Active" status only
+Click to open detail sheet
+Client Detail Sheet:
+Shows avatar, name, company, status
+Next follow-up, lead source, next action
+Mark Done button (clears next action)
+Tags display
+Activity Log: Add notes, emails, calls, meetings (with timestamps)
+Email, phone, address summary
+Project count
+Edit and Close buttons
+CSV Operations:
+Template: Download sample format
+Export: Download all clients
+Import:
+Email required per row
+Matching email updates existing client
+Status can be slug or label
+No Archive Feature: Use statuses like "Inactive" or "Closed Lost" instead
+3. Projects (/projects)
+Manage all your work projects.
+Project List Features:
+Search by project or client name
+Status filter: All, Active, On Hold, Completed, Cancelled
+Toggle grid/list view
+CSV: Template, export filtered projects, import
+Creating/Editing Projects:
+Fields:
+Name (required)
+Description
+Status: Active, On Hold, Completed, Cancelled
+Budget (number)
+Hourly Rate
+Start Date
+Due Date
+Client (optional dropdown - can be "none")
+Icon: Emoji picker + color swatches
+Actions:
+Save project
+Delete from card menu (with confirmation)
+Deep Links:
+?new=1 opens create dialog
+?edit=<projectId> opens edit dialog
+4. Tasks (Inside Project Detail /projects/:id)
+Full task management within each project.
+Task Views:
+Kanban Board: Visual columns with drag-and-drop
+List View: Table format with inline editing
+Task Fields:
+Title
+Description
+Status (project-specific columns)
+Priority: Low, Medium, High, Urgent
+Due Date
+Estimated Hours
+Default Columns: When no custom statuses exist:
+Haven't Started
+In Progress
+Review
+Done (marked as "done" status)
+Custom Status Columns:
+Add custom columns
+Reorder columns
+Assign colors
+Mark which column means "done"
+Task Actions:
+In Kanban View:
+Quick add task to any column
+Drag tasks between columns to update status
+Click task to open detail sheet
+In List View:
+Inline edit: title, priority, due date, estimates
+Click row to open detail sheet
+Task Detail Sheet:
+Edit all fields
+Comments Thread: Add/view comments (stored per user)
+Duplicate task
+Delete task
+CSV Operations:
+Import/export tasks with project-specific template
+Limitations:
+Tasks owned by logged-in user only
+No assignee picker for other users
+One user per workspace
+5. Time Tracking (/time/timer and /time/logs)
+Track time manually or with a built-in timer.
+Timer Tab (/time/timer)
+Features:
+Start/Stop timer builds time segments
+Shows elapsed time while running
+Persists to localStorage (survives page refresh)
+Timer Bar appears in app layout when timer running
+Timer Fields:
+Description
+Project (required)
+Task (depends on selected project)
+Billable toggle (on/off)
+Actions:
+Log Time - Saves entry to database
+Discard Segment - Removes current segment
+Timer continues running while navigating app
+Time Logs Tab (/time/logs)
+View & Filter:
+Table of up to 200 recent entries
+Timeframe filters: All, Today, This Week, This Month, Last 30 Days
+Project filter
+Client filter
+Billing status: All, Unbilled, Billed, Paid, Not Billable
+Manual Time Entry: Click Manual Log or Edit existing:
+Two Input Modes:
+1. Manual Hours:
+Project (required)
+Task (optional)
+Date
+Hours (number)
+Description
+Billable toggle
+2. Start/End Times:
+Project (required)
+Task (optional)
+Date
+Multiple time ranges allowed
+Description
+Billable toggle
+Bulk Operations:
+Selection mode for multiple entries
+Bulk delete selected entries
+CSV Operations:
+Template download
+Export filtered entries
+Import time logs
+Connection to Invoicing:
+Entries marked "billable" appear as "unbilled"
+Can import unbilled time into invoices
+Hourly rate stored per entry
+Billing status tracks: unbilled, billed, paid, not_billable
+6. Invoices (/invoices, /invoices/:id)
+Create, send, and manage client invoices.
+Invoice List Page (/invoices)
+Creating New Invoice: Click New Invoice - Required fields:
+Client (dropdown)
+Project (filtered by selected client)
+Issue Date
+Due Date
+Tax (from your tax table)
+⚠️ Warning if Missing:
+Business name
+Business email
+Business address
+Bank details
+Creates draft invoice with zero totals → opens detail page
+List Filters:
+Search invoices
+Date presets: All, This Week, This Month, Last 90 Days, Custom Range
+Client filter
+Project filter
+Status filter
+Row Actions:
+Open detail
+Change status
+Delete (with confirmation)
+CSV Operations:
+Import/export invoices
+Invoice Detail Page (/invoices/:id)
+Invoice Statuses:
+Draft - Fully editable
+Sent - Read-only until you click "Edit Invoice"
+Paid - Read-only until you click "Edit Invoice"
+Line Items:
+Description
+Line date (optional)
+Quantity
+Unit price
+Amount (calculated)
+Add/remove lines
+Invoice Fields:
+Tax selector (recalculates total)
+Notes
+Invoice footer
+Bank details (can preload from profile defaults)
+Display Options (from business profile):
+Show/hide quantity column
+Show/hide rate column
+Show/hide line dates
+Import from Time: Click Import from Time:
+Modal shows unbilled time entries
+Select entries → converts to invoice lines
+Automatically fills description, hours, rate
+Invoice Actions:
+Preview:
+HTML preview styled like PDF
+Print-ready format
+Send Invoice: Choose mode:
+Send (first time)
+Reminder (follow-up)
+Receipt (after payment)
+Email Fields:
+To (required)
+CC (multiple emails)
+Subject (uses template)
+Message (uses template with merge tags)
+Merge Tags Available:
+{{client_name}}
+{{invoice_number}}
+{{due_date}}
+{{total_amount}}
+(more listed in settings)
+Other Actions:
+Mark as Paid (records payment date)
+Download (via preview)
+Edit Invoice (when sent/paid)
+Deep Linking:
+From reviews: ?project_id=...&from_review=1 pre-fills client/project
+7. Client Reviews / Approvals (/reviews, /reviews/:id)
+Share files with clients for approval.
+Organizing Reviews:
+Folders:
+Create folders with: Name, Emoji, Color
+Edit/delete folders
+Move reviews between folders
+Creating Review Request:
+Required Fields:
+Title
+Client (dropdown)
+At least one file (upload)
+Optional Fields:
+Description
+Version (default: "1")
+Project
+Folder
+Due Date
+Recipients (email addresses)
+Auto-adds client email when client selected
+Can add multiple recipients
+File Upload:
+Handled via Edge Function
+Counts toward 10MB storage limit
+List View:
+Filter by: Status, Client, Project, Folder
+Toggle: Cards vs List view
+Navigate by folder
+Review Statuses:
+Pending
+Approved
+Rejected
+Commented
+Review Detail (Your View)
+Actions:
+Copy Link - Share public review URL
+View as Client - See client's view
+Send to Client - Email with link
+Send Reminder - Follow-up email
+Add More Files - Upload additional files
+Delete Files - Remove files (returns storage)
+Move to Folder - Reorganize
+Delete Request - Remove entire review
+Create Invoice - Deep link to new invoice
+View Comments:
+See all client comments
+Comments linked to specific images
+Public Client Review Page (/review/:token)
+No login required - clients access via token link
+Client Identity: On first visit, client enters:
+Name
+Email Stored in browser localStorage for future comments
+Client Features:
+Image Viewer:
+Zoom in/out
+Pin comments on specific image locations (X/Y coordinates)
+Navigate between images
+Actions:
+Approve entire review
+Reject entire review
+Add Comments - General or pinned to image locations
+Edit Own Comments - By matching email
+Delete Own Comments - By matching email
+File Organization:
+Files grouped in folders (if used)
+View version numbers
+8. Notes (/notes)
+Rich text note-taking with organization.
+Sidebar:
+New Note button
+Create Folder - Name, emoji, color
+Note list with title, excerpt, folder chip
+Click note to open in editor
+Filters:
+Folder: All, None, or specific folder
+Tag: Single tag filter or all tags
+Clear Filters button
+Note Editor (React Quill)
+Formatting Tools:
+Bold, Italic
+Bulleted/numbered lists
+Links
+Images
+Blockquotes
+Horizontal divider
+Special Features:
+Entity Links:
+Link to clients
+Link to projects
+Create Task from Text:
+Select text in note
+Click create task option
+Dialog opens with:
+Task title (pre-filled with selected text)
+Project selector (required)
+Inserts task in first status column of project
+Note Properties:
+Title (editable)
+Tags (add multiple)
+Icon Emoji (picker)
+Cover Color (color selector)
+Folder (assign/change)
+Auto-Save:
+Saves after 800ms of inactivity
+No manual save needed
+Actions:
+Download as .doc - Word-compatible HTML format
+Delete Note - With confirmation
+Deep Link:
+?open=<noteId> opens specific note
+9. Notifications (/notifications)
+Stay updated on app activity.
+Notification List:
+Type indicator
+Title
+Body text
+Link to related item
+Read/unread state
+Relative timestamp (e.g., "2 hours ago")
+Actions:
+Mark Read (individual)
+Mark All Read
+Delete (individual with confirmation)
+Delete All (with confirmation)
+Settings link → /settings/notifications
+What Triggers Notifications:
+Project due dates approaching
+Task due dates
+Invoice due/overdue
+Review comments
+Review approvals/rejections
+See Settings > Notifications for control over what you receive
+10. Search (/search)
+Global search across all your data.
+How to Search:
+Enter query in Dashboard search bar
+Or use search in app layout
+Submits to /search?q=your+query
+Searches (case-insensitive, up to 10 per category):
+Projects:
+By name
+Clients:
+By name or company
+Invoices:
+By invoice number
+Tasks:
+By title or description
+Notes:
+By title or HTML content
+Results:
+Click to navigate to item
+Projects → project detail
+Clients → /clients?open=<id> (opens detail sheet)
+Invoices → invoice detail
+Tasks → project detail (parent project)
+Notes → /notes?open=<id> (opens note)
+11. Feature Requests (/feature-requests)
+Submit and vote on product features.
+Note: /help redirects here
+View Requests:
+List of all feature requests
+Filter by status: All, Open, In Progress, Completed
+Sorted by votes (highest first), then date
+Status Labels:
+Open - New request
+In Progress - Being developed
+Completed - Released
+Submit New Request:
+Title (required)
+Description (optional)
+Click submit
+Voting:
+Click to vote for features you want
+Click again to remove your vote
+Your votes help prioritize development
+Settings (/settings/...)
+Configure your account, business, and preferences.
+1. Profile Settings (/settings/profile)
+Personal Information:
+Profile Picture - Upload photo
+First Name
+Last Name
+Email
+Phone
+Click Save Changes to update
+2. Business Settings (/settings/business)
+Business Logo:
+Upload image
+Maximum: 500 KB
+Counts toward storage limit
+Business Information:
+Business Name
+Business Email
+Business Phone
+Complete Address (Street, Street 2, City, State/Province, ZIP, Country)
+Website
+Tax ID
+Banking Details:
+Bank Name
+Account Number
+Routing Number
+Payment Instructions (text area for wire details, etc.)
+Client Email Customization:
+Primary Color (for email branding)
+Header HTML (custom email header)
+Footer HTML (custom email footer)
+Click Save or Discard changes
+3. Invoice Settings (/settings/invoices)
+Default Hourly Rate:
+Sets default for time entries
+Invoice Numbering:
+Prefix (text before number)
+Include Year (toggle)
+Start Number (minimum: 1)
+Padding (1-6 digits, e.g., 001 vs 000001)
+Reset Yearly (toggle - restarts numbering each year)
+Default Invoice Content:
+Notes (appears on invoices)
+Footer (bottom text on invoices)
+Bank Details (auto-fills on new invoices)
+Default Email Templates:
+Subject Line with merge tags
+Message Body with merge tags
+Available Merge Tags:
+{{client_name}}
+{{invoice_number}}
+{{due_date}}
+{{total_amount}}
+(additional tags listed in UI)
+Invoice Reminders:
+Enable toggle
+Days Before Due (when to send)
+Subject template
+Body template
+Tax Management:
+Add Tax: Name + Rate (%)
+Set Default Tax (used on new invoices)
+Edit/Delete Taxes
+First tax becomes default automatically
+Note: Some default text loads from app_comms_defaults table
+4. Locale Settings (/settings/locale)
+Auto-Detect Button:
+Automatically sets timezone, currency, and formats based on your browser/location
+Currency:
+Searchable dropdown (~80 currencies)
+Currency display format options
+Number Format:
+Regional number formatting (e.g., 1,000.00 vs 1.000,00)
+Date Format:
+Choose your preferred date display
+Time Format:
+12-hour or 24-hour
+Timezone:
+Searchable timezone selector
+Used for scheduling and date displays
+5. Notification Settings (/settings/notifications)
+Control what notifications you receive and where.
+Projects:
+Due Soon - In-app only
+Overdue - In-app only
+Tasks:
+Due Soon - In-app only
+Overdue - In-app only
+Invoices:
+Due Soon - In-app and Email
+Overdue - In-app and Email
+Reviews:
+New Comment - In-app and Email
+Approved/Rejected - In-app and Email
+Due Soon - In-app and Email
+Overdue - In-app and Email
+Marketing:
+Product Updates & Tips - Email only
+Syncs to Resend mailing list when saved
+Default Timing:
+"Due Soon" notifications: 7 days before due date
+Note: Project and task email notifications are disabled at the system level (toggles disabled in UI)
+6. Subscription Settings (/settings/subscription)
+Manage your billing and subscription.
+Status Badges:
+Free Trial - Shows days remaining
+Active - Paid subscription active
+Past Due - Payment issue
+Inactive - No active subscription
+Trial Information:
+Plan name: Early Access Monthly or Annual
+Days left in trial
+Trial end date
+Explanation: "You won't be charged until your trial ends"
+Manage Subscription:
+Button opens Stripe Customer Portal
+Portal allows:
+Update payment method
+Cancel subscription
+View invoices
+Change plan
+Plan Options:
+Monthly: $29/month
+Annual: $290/year (2 months free vs monthly)
+Upgrade/Switch via Stripe Checkout if not current
+Access Without Subscription:
+If trial expires or subscription inactive
+Redirected here automatically
+Cannot access rest of app until reactivated
+7. Storage Settings (/settings/storage)
+Monitor and manage your file storage.
+Storage Limit:
+10 MB per user
+What Counts:
+Review files (primary usage tracked)
+Business logo
+Profile picture
+(Documented in UI)
+Usage Display:
+Progress bar showing used vs available
+Total MB used
+Percentage of limit
+File List:
+All review files listed
+Shows file size for each
+Delete button per file (with confirmation)
+⚠️ Important:
+Deleting the last file in a review request deletes the entire review request
+Admin Features
+Access: Requires profiles.is_admin = true
+Non-admins redirected to /dashboard automatically
+Admin Navigation
+Available at /admin:
+Overview
+Landing Content
+Announcements
+Comms & Templates
+Branding
+Icons
+Help Content
+Feature Requests
+Feedback
+Hidden Route: /admin/system-check - accessible by URL, not in menu
+1. Admin Overview (/admin/overview)
+Dashboard with cards linking to all admin sections
+2. Landing Content (/admin/landing-content)
+Edit marketing website content:
+Hero section
+Pricing display
+Trial copy
+Feature descriptions
+(Large form for landing page JSON content)
+3. Announcements (/admin/announcements)
+Manage in-app announcements for all users
+4. Comms & Templates (/admin/comms)
+Edit system communication templates:
+Email header/footer HTML
+Invoice email defaults
+Reminder email defaults
+Trial reminder emails (3 stages):
+5 days before end
+1 day before end
+Trial ends today
+5. Branding (/admin/branding)
+Customize app appearance:
+Logo uploads
+App icon
+Color schemes
+Sizing for app and landing page
+6. Icons (/admin/icons)
+Manage custom icon system:
+Upload custom icons
+Assign to "slots" throughout app
+Override default Lucide icons
+7. Help Content (/admin/help-content)
+Manage help center articles:
+Create/edit help articles
+Organize content
+(Used in product help system)
+8. Feature Requests Admin (/admin/feature-requests)
+Moderate user feature requests:
+Change status (Open, In Progress, Completed)
+View votes
+Manage submissions
+9. Feedback (/admin/feedback)
+Review user feedback submissions
+10. System Check (/admin/system-check)
+System health and testing tools:
+Test Trial Reminders:
+Send test email to any address
+Calls send-trial-reminders function
+Stripe Health Check:
+Run billing-health function
+Verify Stripe integration
+Manual Launch Checklist:
+Test real review send
+Test invoice email
+Test password reset
+(Documented in UI)
+Limits & Constraints Summary
+Item
+Limit/Rule
+Password
+Minimum 6 characters
+Trial Period
+15 days
+Storage
+10 MB per user
+Business Logo
+500 KB maximum
+Invoice Padding
+1-6 digits
+Invoice Start Number
+Minimum 1
+Time Entries Display
+200 most recent
+Search Results
+10 per category max
+New Review
+Must have at least 1 file
+CSV Import - Clients
+Email required per row
+Onboarding Step 3
+Business name required
+Email Notifications
+Projects/tasks disabled (in-app only)
+Common Workflows
+Complete Client Project Workflow:
+Add Client (/clients)
+Enter contact details
+Set status (e.g., "New Lead" → "Active")
+Add next action/follow-up
+Create Project (/projects)
+Link to client
+Set budget & hourly rate
+Add start/due dates
+Add Tasks (/projects/:id)
+Create task columns
+Add tasks to project
+Set priorities & due dates
+Track Time (/time/timer)
+Select project & task
+Run timer or log manually
+Mark as billable
+Create Invoice (/invoices)
+Select client & project
+Import unbilled time entries
+Add any additional line items
+Set tax
+Send to client
+Get Paid
+Client receives email
+Mark invoice as paid
+(Time entries update to "paid" status)
+Client Approval Workflow:
+Create Review Request (/reviews)
+Upload files (designs, mockups, etc.)
+Select client
+Add recipients
+Send to Client
+Copy public link or send email
+Client receives token link
+Client Reviews (Public page)
+Client opens link (no login)
+Enters name/email (first time)
+Views files, adds comments
+Approves or requests changes
+Create Invoice (Optional)
+From review detail, click "Create Invoice"
+Auto-fills client & project
+Complete and send
+Note-to-Task Workflow:
+Create Note (/notes)
+Write research, ideas, or meeting notes
+Highlight Text
+Select any text in note
+Create Task
+Click create task button
+Task title pre-filled
+Select project
+Task created in project's first column
+Best Practices
+Based on the UI design:
+✅ Complete your business profile - Invoice warnings appear if missing business name, email, address, or bank details
+✅ Use billable vs non-billable time - Dashboard tracks "unbilled hours" for accurate client billing
+✅ Follow invoice lifecycle - Draft → Sent → Paid (editing becomes restricted after sending)
+✅ Set follow-up actions on clients - Surfaces on Dashboard to keep relationships active
+✅ Organize with folders - Available for notes and reviews to keep content organized
+✅ Use tags - On clients and notes for flexible filtering
+✅ Monitor storage - Check /settings/storage regularly; delete old review files when done
+✅ Set notification preferences - Control what emails you receive in /settings/notifications
+✅ Leverage search - Quick access to any client, project, invoice, task, or note from Dashboard
+Newly Added Workflows: Services + Proposals
+12. Services (/services)
+Purpose: Build a reusable catalog of service offerings (one-time or recurring).
+Create Service: Name, description, default price, currency, recurring toggle (monthly/annually), and default task list.
+Edit/Delete: Manage catalog entries from the Services table.
+Usage: Services can be added to proposals as snapshot line items.
+13. Proposals (/proposals, /proposals/:id, /proposal/:token)
+Proposals list: Search by identifier/client/project, status filters, create/duplicate/delete actions.
+Create Proposal modal: Select client, optional project, helper text for identifier, quick actions to create new client/project.
+Proposal editor tabs:
+Details: Client/project selection, identifier, cover image, About, Objective, validity preview.
+Services: Add from catalog or manually, quantity/price, subtotal/discount/total calculations.
+Conditions: Availability, project duration, payment structure/methods, optional notes, installment description when applicable.
+Preview: Live client-facing render, copy link, open client view, save-and-send.
+Public client view: Read-only proposal presentation with accept action and CTA contact options.
+Status lifecycle: Draft -> Sent -> Read -> Accepted.
+8. Proposal Settings (/settings/proposals)
+Purpose: Configure default values automatically applied when creating a new proposal.
+Default cover image upload (recommended 1500 x 500, 3:1).
+Default validity days.
+Default immediate availability toggle.
+Default payment structure and payment methods.
+Default installment description and optional notes.

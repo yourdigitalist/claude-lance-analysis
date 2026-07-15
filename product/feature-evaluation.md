@@ -1,25 +1,31 @@
-# Feature Evaluation — 2026-07-14
+# Feature Evaluation — 2026-07-15 (v2)
 
-Scores each Lance feature against the pain-point map (v1, same date). Scale: how directly the feature addresses researched pains — strong / moderate / weak / none. "Table stakes" = every paid competitor has it; its absence would hurt but its presence sells nothing.
+**v2 note:** the 2026-07-14 version missed features. Corrected against the technical build doc and user journey doc Marina provided 2026-07-15: Lance also has **Proposals** (token-based public view, accept lifecycle, service line items), **Services** (priced service library with default tasks), **dashboard analytics**, **global search**, and **notifications with invoice reminders**. Also corrected: the "no contracts" gap is nuanced — proposals with client Accept exist; contracts/e-signatures do NOT appear in the product docs (yet the landing page has a "Signed contracts" section — flagged in the LP audit for Marina to reconcile).
+
+Scores each feature against the pain-point map. Scale: strong / moderate / weak. "Table stakes" = every paid competitor has it.
 
 | Feature | Pains addressed | Strength | Table stakes? | Honest read |
 |---|---|---|---|---|
-| **File approvals (no-login link)** | 1 scattered feedback, 2 version confusion, 3 delayed approvals, 7 vague feedback | **Strong** | No — point solutions have it, all-in-one competitors don't | The differentiator, and the research still supports that **with one correction**: it's not unique as a capability (ClientProof, GoVisually, Ashore do no-login proofing). It IS unique-in-category. Claim it as "approvals inside the tool that also does your projects and invoices", never "the only tool where clients don't log in" |
-| **Invoicing** | 4 unpaid invoices, 10 time-to-invoice, 11 fee stacking | **Strong** (as part of the combo) | Yes | Addresses the loudest money pain but every competitor invoices. Sells only in combination: approval-to-invoice in one flow. Verify auto-reminders and payment fees before writing copy on this |
-| **Time tracking** | 10 time-to-invoice | **Moderate** | Yes (though notably missing in Dubsado and Wave) | Table stakes with a twist: Dubsado lacks it, Wave lacks it, 17hats charges extra for it. "Included, connected to invoices, no add-on fee" is a quiet honest edge — verify hours actually flow to invoices first |
-| **Client CRM / Kanban pipeline** | 6 tool sprawl (partially) | **Moderate** | Yes | No researched pain names "I need a CRM". It supports the one-place story; it doesn't lead. Don't foreground in ads |
-| **Project management** | 6 tool sprawl | **Moderate** | Yes | Same as CRM: necessary for the all-in-one claim, sells nothing alone against free Trello/Asana/Notion |
-| **Rich-text notes → tasks** | — | **Weak** | No | Honest finding per the brief: this feature maps to no researched pain. It's a delighter for existing users, not an acquisition angle. Don't spend ad budget on it |
+| **File approvals / client reviews** (no-login token link, comments, versions, statuses) | 1 scattered feedback, 2 version confusion, 3 delayed approvals, 7 vague feedback | **Strong** | No — unique in the all-in-one category | Still the differentiator. Version numbers on review files confirmed in the journey doc, so the version-confusion claim is safe to make. Claim it as approvals inside the all-in-one (see market scan erosion note) |
+| **Proposals** (public token view, one-click Accept, service line items, defaults) | 5 scope creep, 9 contracts (partially) | **Strong** (missed in v1) | Bonsai/HoneyBook/Dubsado have proposals too | The Accept lifecycle (draft→sent→read→accepted) gives a scope paper trail before work starts. NOT a contract/e-signature — don't market it as one. Combined with per-proposal service line items it directly answers scope creep |
+| **Invoicing** (+ reminders, overdue notifications, unbilled-time import) | 4 unpaid invoices, 10 time-to-invoice | **Strong** | Yes | Upgraded from v1: send-reminder and overdue notifications (in-app + email) are confirmed, so the chasing-payment claim is real. Note: Lance does NOT process client payments (manual mark-as-paid, wire instructions) — no transaction fees ever, but no card collection either. That cuts both ways vs HoneyBook's 2.9%+$0.25: "no fees" is honest, "get paid faster" needs care |
+| **Time tracking** (timer, billable flags, unbilled→invoice import) | 10 time-to-invoice | **Moderate-strong** | Yes, but gaps in competitors | Confirmed: billable entries import into invoices. Dubsado lacks time tracking, Wave lacks it, 17hats charges extra. "Included and connected to invoices" is now a verified claim |
+| **Services library** (priced services, default tasks, feeds proposals) | 5 scope creep (supporting) | **Moderate** (missed in v1) | Partially | Quietly useful: reusable priced services make proposals fast and consistent. Supporting cast for the proposals story, not a lead angle |
+| **CRM / Kanban** (+ lead source, next action, estimated value) | 6 tool sprawl | **Moderate** | Yes | Richer than v1 assumed (follow-up dates, pipeline value). Still supports the one-place story rather than leading |
+| **Projects + tasks** (Kanban, custom columns, deadline notifications) | 6 tool sprawl | **Moderate** | Yes | Deadline notifications confirmed. Same read as v1: necessary, not a lead angle vs free Trello |
+| **Dashboard analytics** (hours, unbilled, pending payment, approvals counts) | 4, 6 (visibility) | **Moderate** (missed in v1) | Yes | "Pending payment" and "unbilled hours" tiles surface the money-admin pains at a glance. Good demo material for the video/screenshots (careful: dollar figures in ad screenshots stay a Meta risk) |
+| **Notes → tasks** (rich text, folders) | — | **Weak** | No | Unchanged from v1: maps to no researched pain. Delighter, not an acquisition angle |
+| **Global search / notifications** | — (glue) | **Weak** alone | Yes | Product glue. Not marketing material |
 
 ## Which features address the loudest pains
 
-Approvals (pains 1, 2, 3, 7 — the loudest cluster) and invoicing (pain 4). The combination addresses pain 6 (tool sprawl), which no single feature does.
+Unchanged conclusion, stronger evidence: approvals owns the loudest cluster (scattered feedback/versions/sign-off), invoicing+time owns the money cluster — and now **proposals bridges the two** (scope agreed before work, approvals during work, invoice after). "From kickoff to paid" on the landing page is exactly this story.
 
 ## Is the differentiator still the differentiator?
 
-Yes, with the category qualifier. The research strengthened the approvals angle (scattered feedback is the loudest researched pain) and simultaneously narrowed the safe claim (no-login proofing exists as a category). Updated safe framing: **"Your client clicks a link, reviews the file, you invoice from the same tool."**
+Yes — approvals, framed in-category (see market scan). The proposals module strengthens the surrounding story but proposals themselves are table stakes among paid all-in-ones.
 
-## Gaps vs. paid competitors (for product roadmap awareness, not marketing)
+## Real gaps (corrected)
 
-- No contracts/e-signatures (pain 9) — Bonsai, HoneyBook, Dubsado all have this and lead with it
-- Unverified: invoice auto-reminders, payment fees — these affect how hard we can push the invoicing story
+- **Contracts/e-signatures: still absent per product docs.** Bonsai/HoneyBook/Dubsado all have them. The landing page currently claims them — reconcile (LP audit action 2)
+- **No client payment processing.** No fees is a real angle; "clients pay by card" isn't available. Don't imply online payment collection in copy

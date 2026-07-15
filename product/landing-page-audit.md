@@ -1,40 +1,46 @@
-# Landing Page Audit — 2026-07-14 — BLOCKED (partial)
+# Landing Page Audit — 2026-07-15 — COMPLETED
 
-**Status: could not complete.** getlance.app is unreachable from this session: the site (or its CDN) returns 403 to the fetch tooling, the environment's network policy blocks direct browser access to arbitrary domains, and archive snapshots are also unreachable. Rather than audit from memory or invent findings, this file records what CAN be said, what to check, and how to finish the audit.
+**Source:** full-page screenshot provided by Marina 2026-07-15, plus her notes (hero noun rotates through audience segments: freelancers, copywriters, designers, web developers...; hero image is a video intro of the app). First attempt 2026-07-14 was blocked (page unreachable from the research environment) — that's why this is a day late.
 
-## What was confirmed
+**Resolution caveat:** body copy is too small to read in the screenshot, so line-level voice checks (em dashes, sentence rhythm) could not be run. The section headings and major claims ARE legible and are audited below. To finish the line-level pass: export the copy from the landing page CMS (/admin/landing-content per the tech doc) into /product/lp-snapshots/ and run lance-voice on it.
 
-- The signup page title is "Lance – Manage your business" ([getlance.app/auth](https://www.getlance.app/auth?tab=signup), surfaced via search). No other live copy could be captured.
+## Overall rating: RED (one hard voice violation + one unverified feature claim)
 
-## Known issue to check first (from CLAUDE.md, not from viewing the page)
+## Findings
 
-- **"2,400+ freelancers trust Lance" is a confirmed placeholder.** If it is still on the live page, that's a red-rated item under lance-voice rule 5 (real proof only): it must be replaced with a real number or removed. This is already tracked as an open risk in /dashboard/data/risks.json regardless of audit completion.
+### RED — "Simple, honest pricing." section heading
+This is verbatim on the banned list in CLAUDE.md (voice rules: no generic SaaS clichés, with "simple, honest pricing" named explicitly). It must change. On-voice alternatives to consider: "One plan. $29." / "What it costs." / "No tiers, no add-ons." (all pass lance-voice; Marina picks).
 
-## Audit checklist (to run when the page is accessible)
+### RED until verified — "Signed contracts without the back-and-forth." section
+Neither the technical build doc nor the user journey doc documents a contracts/e-signature feature. Proposals exist (with an Accept action), but a proposal acceptance is not a signed contract. Either (a) contracts shipped and the docs are stale — then fine, update the docs; or (b) the page is marketing a feature that doesn't exist — that's a trust and refund risk and the section should be reworded to what proposals actually do ("Proposals your clients can accept in one click") or removed. **Marina to confirm which.**
 
-Against **lance-voice**:
-- [ ] Any em dashes in page copy
-- [ ] Any "isn't just X, it's Y" constructions
-- [ ] Any AI-phrasing/SaaS clichés ("everything you need...", "simple, honest pricing")
-- [ ] Every stat/number on the page: real, placeholder, or fabricated? ("2,400+ freelancers" especially)
-- [ ] Sentence length / casual directness
+### YELLOW — "The average freelancer pays $75/month to run their business."
+Specific stat, no visible source. If $75 is the sum of the actual tool prices listed in the comparison table next to it, it's defensible arithmetic — but then (a) verify those listed prices are current (our 2026-07-14 market scan has sourced prices to check against) and (b) say "adds up to" rather than "the average freelancer pays", which claims survey data we don't have. If it's not the table sum, it's an invented stat and has to go.
 
-Against the **pain-point map**:
-- [ ] Does the hero speak to scattered feedback / chasing approvals (loudest researched pain) in the visitor's words?
-- [ ] Is the DIY-stack alternative ("you're duct-taping Notion + spreadsheets + a free invoice tool") named anywhere?
-- [ ] Does invoicing copy connect to approval flow (the unique combination) or sit in a generic feature grid?
+### YELLOW — "What our beta testers say." testimonials (8 cards)
+Real-proof-only rule: confirm each quote is from a real beta tester who agreed to be quoted. If yes, green (and consider adding first names/roles for credibility). If any are illustrative placeholders, they must be labeled or removed.
 
-Against **conversion basics** (cro skill):
-- [ ] Is the approvals differentiator above the fold, or buried in a feature grid? (CLAUDE.md says foreground it)
-- [ ] One clear primary CTA? What does the button say — value ("Start your 15-day free trial") or generic ("Sign up")?
-- [ ] Is $29/mo + 15-day trial visible without hunting?
-- [ ] Any unsubstantiated claims remaining anywhere on the page
+### GREEN (verify) — "2,400+ freelancers trust Lance" appears to be GONE
+The placeholder stat is not visible anywhere in the screenshot. If it was removed deliberately: excellent, close the open item in CLAUDE.md. There is small text under the hero CTAs I can't read — confirm it isn't hiding there.
 
-## How to finish this audit
+### Conversion findings (cro pass)
 
-Run from a session with normal network access (or paste the page HTML/screenshots into the repo under /product/lp-snapshots/):
+1. **The differentiator is buried.** Approvals ("Client feedback that's actually useful." / "Give clients a window. Not your inbox.") is the 8th-9th feature section, far below the fold. CLAUDE.md says foreground it. The hero's general angle (matches Arm A) is a fair choice, but at minimum the approvals feature deserves the first feature-section slot, not a mid-list position. This also sets up the Arm A/Arm B ad test nicely: if Arm B (approvals angle) wins, the hero should follow.
+2. **Hero is on-positioning.** "Organised [audience] earn more." with the rotating noun is exactly the current hero angle, personalized per segment. Good execution of the general angle.
+3. **"Your entire freelance stack. $29/month."** — strong, concrete, on-voice second section. The price-anchored comparison against the DIY stack matches the market scan finding (DIY stack is the real competitor).
+4. **Final CTA "Ready to cancel six subscriptions?"** — on-voice, names the enemy, good. Verify "six" matches the comparison table count so the page doesn't contradict itself.
+5. **One primary CTA per screen** — hero shows two buttons (trial + watch demo); acceptable pattern with the video, keep trial visually primary.
+6. **Video intro as hero media** — good; ensure it has a poster frame and doesn't autoplay with sound (couldn't check from a static screenshot).
 
-1. Capture full-page screenshot + text of getlance.app
-2. Work through the checklist above
-3. Rate each finding green/yellow/red per lance-voice
-4. Rewrite this file with findings, keeping the date in the filename convention (new date, new file — this one stays as the record that the first attempt was blocked)
+### Voice notes on legible headings (pass)
+"Every client relationship, properly managed." / "Projects that don't fall apart mid-way." / "Every hour logged. Every hour billed." / "Invoices that go out fast..." / "Proposals your clients actually read." / "Every brief, idea, and meeting note in one place." / "From kickoff to paid." — all short, direct, concrete, no clichés. These pass lance-voice as headings. "Everything that needs doing, nothing forgotten." sits close to the banned "everything you need, nothing you don't" construction family — passable, but if it ever gets flagged by Meta reviewers or feels templated, "Tasks that don't slip." is the same idea, safer.
+
+## Action list (for Marina)
+
+1. Replace "Simple, honest pricing." heading — hard rule violation
+2. Confirm contracts feature exists or reword/remove that section
+3. Source or reframe the $75/month claim
+4. Confirm beta testimonials are real and permitted
+5. Confirm "2,400+" placeholder is fully removed (including small print)
+6. Consider moving approvals to first feature slot
+7. Export CMS copy for the line-level lance-voice pass
